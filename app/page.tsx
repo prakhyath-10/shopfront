@@ -15,6 +15,30 @@ const STEPS = [
   { n: "3", title: "Share your link", text: "Customers browse on their phone and send requests." },
 ];
 
+const PLANS = [
+  {
+    name: "Free",
+    price: "₹0",
+    period: "forever",
+    features: ["1 shop", "Up to 10 products or services", "Customer requests", "Shareable storefront link"],
+    cta: "Start free",
+    highlight: false,
+  },
+  {
+    name: "Pro",
+    price: "₹499",
+    period: "per month",
+    features: [
+      "Unlimited shops and listings",
+      "Online payments with Stripe",
+      "Custom shop link",
+      "Priority support",
+    ],
+    cta: "Go Pro",
+    highlight: true,
+  },
+];
+
 export default function Home() {
   const btnPrimary =
     "inline-flex h-11 items-center justify-center rounded-full bg-teal-600 px-6 text-sm font-medium text-white transition-colors hover:bg-teal-700";
@@ -91,7 +115,47 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 sm:pb-24">
+        <section id="pricing" className="border-y border-zinc-200 bg-white">
+          <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
+            <h2 className="text-center text-xl font-semibold text-zinc-900">
+              Simple pricing
+            </h2>
+            <p className="mt-2 text-center text-sm text-zinc-500">
+              Start free. Upgrade when your shop grows.
+            </p>
+            <div className="mx-auto mt-8 grid max-w-3xl gap-4 md:grid-cols-2">
+              {PLANS.map((p) => (
+                <div
+                  key={p.name}
+                  className={`rounded-2xl border bg-white p-6 shadow-sm ${
+                    p.highlight ? "border-teal-600" : "border-zinc-200"
+                  }`}
+                >
+                  <h3 className="text-base font-semibold text-zinc-900">{p.name}</h3>
+                  <p className="mt-3 text-3xl font-semibold tracking-tight text-zinc-900">
+                    {p.price}{" "}
+                    <span className="text-sm font-normal text-zinc-500">{p.period}</span>
+                  </p>
+                  <ul className="mt-4 flex flex-col gap-2 text-sm text-zinc-600">
+                    {p.features.map((f) => (
+                      <li key={f}>&#10003; {f}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <Link href="/login" className={p.highlight ? btnPrimary : btnSecondary}>
+                      {p.cta}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-center text-xs text-zinc-500">
+              Payments run in Stripe test mode for this demo.
+            </p>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
           <div className="rounded-2xl border border-zinc-200 bg-white p-8 text-center shadow-sm sm:p-12">
             <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
               Ready to open your online shop?
