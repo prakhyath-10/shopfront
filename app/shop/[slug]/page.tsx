@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { CursorGlow } from "@/components/live-effects";
+import { CategoryImage } from "@/components/category-image";
 
 type Shop = {
   id: string;
@@ -205,17 +206,23 @@ function Storefront() {
       <header className={`relative overflow-hidden bg-gradient-to-br ${t.hero}`}>
         <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 animate-pulse rounded-full bg-white/60 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-white/40 blur-3xl" />
+        <CategoryImage
+          category={shop.category}
+          alt=""
+          width={1200}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 [mask-image:linear-gradient(to_left,black,transparent)] md:inset-y-0 md:left-auto md:right-0 md:w-1/2 md:opacity-100"
+        />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20">
           <span
             className={`inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide shadow-sm ${t.text}`}
           >
             {t.label}
           </span>
-          <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-zinc-900 sm:text-6xl">
+          <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-zinc-900 sm:text-6xl md:max-w-[55%]">
             {shop.name}
           </h1>
           {shop.description && (
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-700">{shop.description}</p>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-700 md:max-w-[50%]">{shop.description}</p>
           )}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a

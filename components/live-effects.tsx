@@ -41,7 +41,7 @@ export function CursorGlow() {
       const interactive = !!el?.closest("a,button,select,input,textarea,label,[role='button']");
       target = interactive ? 1.8 : 1;
       if (ring.current) {
-        ring.current.style.backgroundColor = interactive ? "rgba(20,184,166,0.15)" : "transparent";
+        ring.current.style.backgroundColor = interactive ? "rgba(24,24,27,0.06)" : "transparent";
       }
     };
 
@@ -78,17 +78,17 @@ export function CursorGlow() {
       <div
         ref={glow}
         style={{ opacity: 0 }}
-        className="pointer-events-none fixed left-0 top-0 z-40 -ml-32 -mt-32 hidden h-64 w-64 rounded-full bg-teal-400/25 blur-3xl transition-opacity duration-300 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-40 -ml-24 -mt-24 hidden h-48 w-48 rounded-full bg-zinc-900/[0.04] blur-3xl transition-opacity duration-300 md:block"
       />
       <div
         ref={ring}
         style={{ opacity: 0 }}
-        className="pointer-events-none fixed left-0 top-0 z-50 -ml-5 -mt-5 hidden h-10 w-10 rounded-full border-2 border-teal-500/70 transition-colors duration-200 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 -ml-5 -mt-5 hidden h-10 w-10 rounded-full border border-zinc-900/30 transition-colors duration-200 md:block"
       />
       <div
         ref={dot}
         style={{ opacity: 0 }}
-        className="pointer-events-none fixed left-0 top-0 z-50 -ml-1 -mt-1 hidden h-2 w-2 rounded-full bg-teal-600 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 -ml-1 -mt-1 hidden h-2 w-2 rounded-full bg-zinc-900 md:block"
       />
     </>
   );
