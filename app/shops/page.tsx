@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { CursorGlow } from "@/components/live-effects";
 
 type Shop = {
   id: string;
@@ -61,6 +62,7 @@ export default function ShopsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-zinc-50">
+      <CursorGlow />
       <header className="border-b border-zinc-200/70 bg-white/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
           <Link href="/" className="text-lg font-semibold tracking-tight text-zinc-900">

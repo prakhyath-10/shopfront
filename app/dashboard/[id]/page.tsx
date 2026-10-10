@@ -97,6 +97,23 @@ function ManageShop() {
     load();
   }, [shopId, router]);
 
+  // Live updates: new customer requests appear instantly
+  useEffect(() => {
+    const channel = supabase
+      .channel(`bookings-${shopId}`)
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "bookings", filter: `shop_id=eq.${shopId}` },
+        (payload) => {
+          setBookings((prev) => [payload.new as Booking, ...prev]);
+        }
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [shopId]);
+
   async function handleAddItem(e: FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -299,7 +316,13 @@ function ManageShop() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-xl font-semibold text-zinc-900">Customer requests</h2>
+            <h2 className="flex items-center gap-2 text-xl font-semibold text-zinc-900">
+              Customer requests
+              <span className="relative flex h-2 w-2" title="Live updates on">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+              </span>
+            </h2>
             {bookings.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-8 text-center">
                 <p className="text-base text-zinc-600">No requests yet.</p>

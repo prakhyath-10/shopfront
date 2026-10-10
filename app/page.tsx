@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CursorGlow, LiveBadge } from "@/components/live-effects";
 
 const SECTORS = [
   { name: "Bakeries & food", text: "Menu, prices and pre-orders" },
@@ -47,6 +48,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
+      <CursorGlow />
       <header className="border-b border-zinc-200 bg-white">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
           <span className="text-lg font-semibold tracking-tight text-zinc-900">ShopFront</span>
@@ -61,6 +63,9 @@ export default function Home() {
           <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600">
             Built for local businesses
           </span>
+          <div className="mt-4 flex justify-center">
+            <LiveBadge />
+          </div>
           <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
             Your shop, online in 10 minutes
           </h1>

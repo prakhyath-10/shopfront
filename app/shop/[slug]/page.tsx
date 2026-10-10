@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState, type FormEvent } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { CursorGlow } from "@/components/live-effects";
 
 type Shop = {
   id: string;
@@ -199,9 +200,10 @@ function Storefront() {
 
   return (
     <div className="min-h-screen bg-zinc-50 pb-24 md:pb-0">
+      <CursorGlow />
       {/* Hero */}
       <header className={`relative overflow-hidden bg-gradient-to-br ${t.hero}`}>
-        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 animate-pulse rounded-full bg-white/60 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-white/40 blur-3xl" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20">
           <span
