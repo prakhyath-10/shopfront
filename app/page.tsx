@@ -70,10 +70,10 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/login" className={btnPrimary}>
-              Get started free
+              I&apos;m a shop owner: start free
             </Link>
-            <Link href="#sectors" className={btnSecondary}>
-              See who it&apos;s for
+            <Link href="/shops" className={btnSecondary}>
+              I&apos;m a customer: browse shops
             </Link>
           </div>
         </section>

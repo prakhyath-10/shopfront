@@ -150,10 +150,10 @@ function ManageShop() {
     "h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-base text-zinc-900 placeholder:text-zinc-400 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/20";
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <header className="border-b border-zinc-200 bg-white">
+    <div className="min-h-screen bg-slate-100">
+      <header className="border-b border-zinc-800 bg-zinc-900">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <Link href="/dashboard" className="text-sm font-medium text-teal-600 hover:text-teal-700">
+          <Link href="/dashboard" className="text-sm font-medium text-teal-300 hover:text-teal-200">
             &larr; All shops
           </Link>
           <Link
@@ -169,6 +169,25 @@ function ManageShop() {
       <main className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6">
         <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">{shop.name}</h1>
         <p className="mt-2 text-sm text-zinc-500">Public link: /shop/{shop.slug}</p>
+
+        <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="rounded-2xl bg-zinc-900 p-4 text-white shadow-sm">
+            <p className="text-xs font-medium text-zinc-400">Listings</p>
+            <p className="mt-1 text-3xl font-semibold">{items.length}</p>
+          </div>
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
+            <p className="text-xs font-medium text-zinc-500">Pending</p>
+            <p className="mt-1 text-3xl font-semibold text-amber-600">
+              {bookings.filter((b) => b.status === "pending").length}
+            </p>
+          </div>
+          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
+            <p className="text-xs font-medium text-zinc-500">Confirmed</p>
+            <p className="mt-1 text-3xl font-semibold text-teal-600">
+              {bookings.filter((b) => b.status === "confirmed").length}
+            </p>
+          </div>
+        </div>
 
         {error && (
           <p role="alert" className="mt-4 text-sm text-red-600">

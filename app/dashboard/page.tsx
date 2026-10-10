@@ -111,14 +111,15 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <header className="border-b border-zinc-200 bg-white">
+    <div className="min-h-screen bg-slate-100">
+      <header className="border-b border-zinc-800 bg-zinc-900">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <Link href="/" className="text-lg font-semibold tracking-tight text-zinc-900">
+          <Link href="/" className="text-lg font-semibold tracking-tight text-white">
             ShopFront
           </Link>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-zinc-500 sm:inline">{email}</span>
+            <span className="hidden rounded-full bg-teal-500/20 px-3 py-1 text-xs font-semibold text-teal-300 sm:inline">Owner workspace</span>
+            <span className="hidden text-sm text-zinc-400 md:inline">{email}</span>
             <button
               onClick={handleSignOut}
               className="inline-flex h-11 items-center justify-center rounded-full border border-zinc-200 bg-white px-6 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50"
