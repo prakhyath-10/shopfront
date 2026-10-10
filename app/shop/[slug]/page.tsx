@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { Suspense, useEffect, useState, type FormEvent } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -29,7 +29,7 @@ function formatPrice(cents: number) {
   }).format(cents / 100);
 }
 
-export default function StorefrontPage() {
+function Storefront() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
 
@@ -298,5 +298,19 @@ export default function StorefrontPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function StorefrontPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-zinc-50">
+          <p className="text-sm text-zinc-500">Loading...</p>
+        </div>
+      }
+    >
+      <Storefront />
+    </Suspense>
   );
 }

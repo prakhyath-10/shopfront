@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { Suspense, useEffect, useState, type FormEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -40,7 +40,7 @@ function formatPrice(cents: number) {
   }).format(cents / 100);
 }
 
-export default function ManageShopPage() {
+function ManageShop() {
   const params = useParams<{ id: string }>();
   const shopId = params.id;
   const router = useRouter();
@@ -334,5 +334,19 @@ export default function ManageShopPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function ManageShopPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-zinc-50">
+          <p className="text-sm text-zinc-500">Loading...</p>
+        </div>
+      }
+    >
+      <ManageShop />
+    </Suspense>
   );
 }
